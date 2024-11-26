@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des messages{% endblock %}
+
+{% block body %}
+    <h1>Liste des messages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Object</th>
+                <th>Expéditeur</th>
+                <th>Destinataire</th>
+                <th>Content</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.object }}</td>
+                <td>{{ message.expeditor }}</td>
+                <td>{{ message.student.firstName }}</td>
+                <td>{{ message.content }}</td>
+                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
+                    <a class="btn btn-success" href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_message_new') }}">Create new</a>
+{% endblock %}

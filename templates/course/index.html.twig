@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des formations{% endblock %}
+
+{% block body %}
+    <h1>Gestion des formations</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+                <td>{{ course.title }}</td>
+                <td>{{ course.description }}</td>
+                <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_course_show', {'id': course.id}) }}">Afficher</a>
+                    <a class="btn btn-success" href="{{ path('app_course_edit', {'id': course.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_course_new') }}">Créer une nouvelle formation</a>
+{% endblock %}

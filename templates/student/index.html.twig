@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des étudiants{% endblock %}
+
+{% block body %}
+    <h1>Gestion des étudiants</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>BirthDay</th>
+                <th>Promo</th>
+                <th>Photo</th>
+                <th>Company</th>
+                <th>Description</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
+                <td>{{ student.birthDay ? student.birthDay|date('Y-m-d') : '' }}</td>
+                <td>{{ student.promo }}</td>
+                <td><img src="{{ asset('uploads/photos/' ~ student.photo) }}" style="width: 100px; height: auto;"></td>
+                <td>{{ student.company }}</td>
+                <td>{{ student.description }}</td>
+                <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_student_show', {'id': student.id}) }}">Afficher</a>
+                    <a class="btn btn-success" href="{{ path('app_student_edit', {'id': student.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" href="{{ path('app_student_new') }}">Créer un nouvel étudiant</a>
+{% endblock %}
