@@ -3,18 +3,19 @@
 {% block title %}Liste des messages{% endblock %}
 
 {% block body %}
-    <h1>Liste des messages</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Liste des messages</h1>
 
-    <table class="table">
-        <thead>
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>Object</th>
+                <th>Objet</th>
                 <th>Expéditeur</th>
                 <th>Destinataire</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
+                <th>Contenu</th>
+                <th>Date de création</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,20 +25,39 @@
                 <td>{{ message.object }}</td>
                 <td>{{ message.expeditor }}</td>
                 <td>{{ message.student.firstName }}</td>
-                <td>{{ message.content }}</td>
+                <td>{{ message.content|slice(0, 50) ~ (message.content|length > 50 ? '...' : '') }}</td>
                 <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
-                    <a class="btn btn-success" href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_message_show', {'id': message.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_message_edit', {'id': message.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="7" class="text-center">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-success" href="{{ path('app_message_new') }}">Create new</a>
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_message_new') }}">Créer un nouveau message</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                },
+                columnDefs: [
+                    { orderable: false, targets: [6] } // Désactive le tri pour la colonne Actions
+                ]
+            });
+        });
+    </script>
 {% endblock %}

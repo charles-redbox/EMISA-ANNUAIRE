@@ -1,0 +1,16 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <div class="form-group mb-3">
+        {{ form_label(form.email, 'Adresse e-mail') }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.password, 'Mot de passe') }}
+        {{ form_widget(form.password, {'attr': {'class': 'form-control', 'type': 'password'}}) }}
+        {{ form_errors(form.password) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Annuler</a>
+{{ form_end(form) }}

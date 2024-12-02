@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un message{% endblock %}
+{% block title %}Modifier un utilisateur{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
@@ -8,14 +8,14 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header bg-warning text-dark">
-                    <h3 class="card-title">Modifier un message</h3>
+                    <h3 class="card-title">Modifier un utilisateur</h3>
                 </div>
                 <div class="card-body">
-                    {{ include('message/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                    {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ path('app_message_index') }}" class="btn btn-secondary">Retour à la liste</a>
-                    {{ include('message/_delete_form.html.twig') }}
+                    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    {{ include('user/_delete_form.html.twig') }}
                 </div>
             </div>
         </div>

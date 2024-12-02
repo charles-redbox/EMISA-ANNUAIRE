@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/message')]
+#[Route('/admin/message')]
 final class MessageController extends AbstractController
 {
     #[Route(name: 'app_message_index', methods: ['GET'])]

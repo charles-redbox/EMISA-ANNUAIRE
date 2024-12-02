@@ -3,17 +3,16 @@
 {% block title %}Gestion des formations{% endblock %}
 
 {% block body %}
-    <h1>Gestion des formations</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des formations</h1>
 
-    <table class="table">
-        <thead>
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,20 +21,34 @@
                 <td>{{ course.id }}</td>
                 <td>{{ course.title }}</td>
                 <td>{{ course.description }}</td>
-                <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{ path('app_course_show', {'id': course.id}) }}">Afficher</a>
-                    <a class="btn btn-success" href="{{ path('app_course_edit', {'id': course.id}) }}">Editer</a>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_course_show', {'id': course.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_course_edit', {'id': course.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="4" class="text-center">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-success" href="{{ path('app_course_new') }}">Créer une nouvelle formation</a>
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_course_new') }}">Créer une nouvelle formation</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                }
+            });
+        });
+    </script>
 {% endblock %}

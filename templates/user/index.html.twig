@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Liste des utilisateurs</h1>
+
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Rôles</th>
+                <th>Mot de passe (haché)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        <span class="badge bg-info text-dark">{{ role }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <code>{{ user.password|slice(0, 20) ~ (user.password|length > 20 ? '...' : '') }}</code>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_user_show', {'id': user.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_user_edit', {'id': user.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Aucun utilisateur trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_user_new') }}">Créer un nouvel utilisateur</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                },
+                columnDefs: [
+                    { orderable: false, targets: [4] } // Désactive le tri pour la colonne Actions
+                ]
+            });
+        });
+    </script>
+{% endblock %}

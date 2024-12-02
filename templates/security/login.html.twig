@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Back-office annuaire EMISA{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h2>Back-office annuaire EMISA</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger text-center">
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                            </div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="alert alert-info text-center">
+                                Vous êtes connecté avec l'identifiant <strong>{{ app.user.userIdentifier }}</strong>. 
+                                <a href="{{ path('app_logout') }}" class="btn btn-danger btn-sm">Se déconnecter</a>
+                            </div>
+                        {% else %}
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Email</label>
+                                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" name="_remember_me" id="_remember_me">
+                                <label class="form-check-label" for="_remember_me">Se souvenir de moi</label>
+                            </div>
+
+                            <button class="btn btn-primary w-100" type="submit"><i class="bi bi-person"></i> M'identifier</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

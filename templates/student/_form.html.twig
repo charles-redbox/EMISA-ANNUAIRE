@@ -1,4 +1,57 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                {{ form_label(form.firstName, 'Prénom') }}
+                {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.firstName) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                {{ form_label(form.lastName, 'Nom') }}
+                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.lastName) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.birthDay, 'Date de naissance') }}
+        {{ form_widget(form.birthDay, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.birthDay) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.promo) }}
+        {{ form_widget(form.promo, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.promo) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.course, 'Formation associée') }}
+        {{ form_widget(form.course, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.course) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.photo) }}
+        {{ form_widget(form.photo, {'attr': {'class': 'form-control-file'}}) }}
+        {{ form_errors(form.photo) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.company, 'Entreprise') }}
+        {{ form_widget(form.company, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.company) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.description, 'Description') }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('app_student_index') }}" class="btn btn-secondary">Annuler</a>
 {{ form_end(form) }}

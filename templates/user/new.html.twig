@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer une nouvelle formation{% endblock %}
+{% block title %}Créer un nouvel utilisateur{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
@@ -8,13 +8,13 @@
         <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="card-title">Créer une nouvelle formation</h3>
+                    <h3 class="card-title">Créer un nouvel utilisateur</h3>
                 </div>
                 <div class="card-body">
-                    {{ include('course/_form.html.twig') }}
+                    {{ include('user/_form.html.twig') }}
                 </div>
                 <div class="card-footer text-end">
-                    <a href="{{ path('app_course_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Retour à la liste</a>
                 </div>
             </div>
         </div>
