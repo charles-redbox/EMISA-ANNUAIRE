@@ -17,18 +17,6 @@
         {{ form_errors(form.content) }}
     </div>
 
-    <div class="form-group mb-3">
-        {{ form_label(form.createdAt, 'Date de création') }}
-        {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.createdAt) }}
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.student, 'Étudiant associé') }}
-        {{ form_widget(form.student, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.student) }}
-    </div>
-
-    <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
-    <a href="{{ path('app_message_index') }}" class="btn btn-secondary">Annuler</a>
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Envoyer') }}</button>
+    <a href="{{ path('app_student_index') }}" class="btn btn-secondary">Annuler</a>
 {{ form_end(form) }}

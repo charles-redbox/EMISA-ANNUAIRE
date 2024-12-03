@@ -11,18 +11,6 @@
         {{ form_errors(form.description) }}
     </div>
 
-    <div class="form-group mb-3">
-        {{ form_label(form.createdAt, 'Date de création') }}
-        {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.createdAt) }}
-    </div>
-
-    <div class="form-group mb-3">
-        {{ form_label(form.updatedAt, 'Date de modification') }}
-        {{ form_widget(form.updatedAt, {'attr': {'class': 'form-control'}}) }}
-        {{ form_errors(form.updatedAt) }}
-    </div>
-
     <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
     <a href="{{ path('app_course_index') }}" class="btn btn-secondary">Annuler</a>
 {{ form_end(form) }}

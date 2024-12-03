@@ -29,7 +29,6 @@
                 <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a class="btn btn-info btn-sm" href="{{ path('app_message_show', {'id': message.id}) }}">Afficher</a>
-                    <a class="btn btn-warning btn-sm" href="{{ path('app_message_edit', {'id': message.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
@@ -39,10 +38,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <div class="text-end">
-        <a class="btn btn-success" href="{{ path('app_message_new') }}">Créer un nouveau message</a>
-    </div>
 </div>
 {% endblock %}
 

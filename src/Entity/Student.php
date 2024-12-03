@@ -53,6 +53,9 @@ class Student
     #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'student')]
     private Collection $messages;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -214,6 +217,18 @@ class Student
                 $message->setStudent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -30,10 +30,11 @@ final class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $course->setCreatedAt(new \DateTimeImmutable());
+            $course->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($course);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Votre formation a été créée avec succès.');
             return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -58,9 +59,9 @@ final class CourseController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $course->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->flush();
-
+            $this->addFlash('success', 'Votre formation a été modifiée avec succès.');
             return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
         }
 

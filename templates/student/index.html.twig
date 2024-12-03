@@ -12,6 +12,7 @@
                 <th>Id</th>
                 <th>Prénom</th>
                 <th>Nom</th>
+                <th>E-mail</th>
                 <th>Date de naissance</th>
                 <th>Promo</th>
                 <th>Photo</th>
@@ -28,6 +29,7 @@
                 <td>{{ student.id }}</td>
                 <td>{{ student.firstName }}</td>
                 <td>{{ student.lastName }}</td>
+                <td>{{ student.email }}</td>
                 <td>{{ student.birthDay ? student.birthDay|date('Y-m-d') : '' }}</td>
                 <td>{{ student.promo }}</td>
                 <td>
@@ -42,20 +44,21 @@
                 <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-info btn-sm" href="{{ path('app_student_show', {'id': student.id}) }}">Afficher</a>
-                    <a class="btn btn-warning btn-sm" href="{{ path('app_student_edit', {'id': student.id}) }}">Éditer</a>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_student_show', {'id': student.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_student_edit', {'id': student.id}) }}"><i class="bi bi-pen"></i></a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_message_new', {'student': student.id}) }}"><i class="bi bi-send"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11" class="text-center">Aucun enregistrement trouvé</td>
+                <td colspan="12" class="text-center">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <div class="text-end">
-        <a class="btn btn-success" href="{{ path('app_student_new') }}">Créer un nouvel étudiant</a>
+        <a class="btn btn-success" href="{{ path('app_student_new') }}"><i class="bi bi-person-plus"></i> Créer un nouvel étudiant</a>
     </div>
 </div>
 {% endblock %}

@@ -1,0 +1,34 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <div class="form-group mb-3">
+        {{ form_label(form.title, 'Titre') }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.content, 'Contenu') }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+        {{ form_errors(form.content) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.active, 'Actif') }}
+        {{ form_widget(form.active, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_errors(form.active) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.metaTitle, 'Méta Titre') }}
+        {{ form_widget(form.metaTitle, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.metaTitle) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.metaDescription, 'Méta Description') }}
+        {{ form_widget(form.metaDescription, {'attr': {'class': 'form-control', 'rows': '3'}}) }}
+        {{ form_errors(form.metaDescription) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('app_page_index') }}" class="btn btn-secondary">Annuler</a>
+{{ form_end(form) }}

@@ -1,0 +1,40 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <div class="form-group mb-3">
+        {{ form_label(form.firstName, 'Prénom') }}
+        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.firstName) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.lastName, 'Nom') }}
+        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.lastName) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.email, 'Email') }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.phone, 'Téléphone') }}
+        {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.phone) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.content, 'Message') }}
+        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.content) }}
+    </div>
+
+    <div class="form-group mb-3">
+        {{ form_label(form.privacyAccepted, 'Confidentialité acceptée') }}
+        {{ form_widget(form.privacyAccepted, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_errors(form.privacyAccepted) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('app_contact_index') }}" class="btn btn-secondary">Annuler</a>
+{{ form_end(form) }}

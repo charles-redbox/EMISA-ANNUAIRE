@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des menus{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des menus</h1>
+
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>URL</th>
+                <th>Actif</th>
+                <th>Position</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for menu in menus %}
+            <tr>
+                <td>{{ menu.id }}</td>
+                <td>{{ menu.title }}</td>
+                <td>{{ menu.url }}</td>
+                <td>{{ menu.active ? 'Oui' : 'Non' }}</td>
+                <td>{{ menu.position }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_menu_show', {'id': menu.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_menu_edit', {'id': menu.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_menu_new') }}">Créer un nouveau menu</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                }
+            });
+        });
+    </script>
+{% endblock %}

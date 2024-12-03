@@ -45,7 +45,7 @@ final class StudentController extends AbstractController
 
             $student->setCreatedAt(new \DateTimeImmutable());
             $student->setUpdatedAt(new \DateTimeImmutable());
-
+            $this->addFlash('success', 'l\'étudiant a été créée avec succès.');
             $entityManager->persist($student);
             $entityManager->flush();
 
@@ -89,7 +89,7 @@ final class StudentController extends AbstractController
             $student->setUpdatedAt(new \DateTimeImmutable());
 
             $entityManager->flush();
-
+            $this->addFlash('success', 'L\'étudiant a été modifié avec succès.');
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -17,13 +17,6 @@ class MessageType extends AbstractType
             ->add('object')
             ->add('expeditor')
             ->add('content')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('student', EntityType::class, [
-                'class' => Student::class,
-                'choice_label' => 'fullName',
-            ])
         ;
     }
 

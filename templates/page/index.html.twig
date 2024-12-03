@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des pages{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des pages</h1>
+
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Actif</th>
+                <th>Méta Titre</th>
+                <th>Méta Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages %}
+            <tr>
+                <td>{{ page.id }}</td>
+                <td>{{ page.title }}</td>
+                <td>{{ page.content }}</td>
+                <td>{{ page.active ? 'Oui' : 'Non' }}</td>
+                <td>{{ page.metaTitle }}</td>
+                <td>{{ page.metaDescription }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_page_show', {'id': page.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_page_edit', {'id': page.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_page_new') }}">Créer une nouvelle page</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                }
+            });
+        });
+    </script>
+{% endblock %}

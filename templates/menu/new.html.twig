@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un menu{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title">Créer un nouveau menu</h3>
+                </div>
+                <div class="card-body">
+                    {{ include('menu/_form.html.twig', {'button_label': 'Créer'}) }}
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{{ path('app_menu_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

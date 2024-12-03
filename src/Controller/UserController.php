@@ -39,7 +39,7 @@ final class UserController extends AbstractController
             $user->setRoles(['ROLE_USER','ROLE_ADMIN']);
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Le compte utilisateur été créé avec succès.');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,7 +65,7 @@ final class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash('success', 'Le compte utilisateur a été modifié avec succès.');
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 

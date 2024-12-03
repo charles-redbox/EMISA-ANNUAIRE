@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType; 
 use Symfony\Component\Validator\Constraints as Assert;
 
 class StudentType extends AbstractType
@@ -19,6 +19,7 @@ class StudentType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
+            ->add('email')
             ->add('birthDay', null, [
                 'widget' => 'single_text',
             ])

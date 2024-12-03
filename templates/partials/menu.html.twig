@@ -6,17 +6,30 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_course_index') }}">Gestion des formations</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="gestionAnnuaireDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Gestion annuaire
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="gestionAnnuaireDropdown">
+                        <li><a class="dropdown-item" href="{{ path('app_course_index') }}">Gestion des formations</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_student_index') }}">Gestion des étudiants</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_student_index') }}">Gestion des étudiants</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="cmsMenuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Gestion site internet
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="cmsMenuDropdown">
+                        <li><a class="dropdown-item" href="{{ path('app_page_index') }}">Gestion des pages</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_menu_index') }}">Gestion des menus</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_contact_index') }}">Gestion des contacts</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_message_index') }}">Gestion des messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_user_index') }}">Gestion des comptes admin</a>
+                    <a class="nav-link" href="{{ path('app_user_index') }}">Gestion des comptes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
