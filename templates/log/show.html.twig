@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log{% endblock %}
+
+{% block body %}
+    <h1>Log</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ log.id }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ log.author }}</td>
+            </tr>
+            <tr>
+                <th>ActionType</th>
+                <td>{{ log.actionType }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ log.description }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ log.createdAt ? log.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_log_index') }}">back to list</a>
+{% endblock %}

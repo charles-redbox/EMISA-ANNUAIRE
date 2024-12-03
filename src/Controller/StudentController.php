@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Entity\Log;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/student')]
 final class StudentController extends AbstractController
 {
+
     #[Route(name: 'app_student_index', methods: ['GET'])]
     public function index(StudentRepository $studentRepository): Response
     {
@@ -49,6 +51,13 @@ final class StudentController extends AbstractController
             $entityManager->persist($student);
             $entityManager->flush();
 
+            $log = new Log($entityManager);
+            $log->log(
+                $this->getUser(),
+                'create',
+                'Created student ID '.$student->getId()
+            );
+
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,8 +68,15 @@ final class StudentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
-    public function show(Student $student): Response
+    public function show(Student $student, EntityManagerInterface $entityManager): Response
     {
+        $log = new Log($entityManager);
+        $log->log(
+            $this->getUser(),
+            'show',
+            'Showed student ID '.$student->getId()
+        );
+
         return $this->render('student/show.html.twig', [
             'student' => $student,
         ]);
@@ -87,8 +103,15 @@ final class StudentController extends AbstractController
             }
 
             $student->setUpdatedAt(new \DateTimeImmutable());
-
             $entityManager->flush();
+
+            $log = new Log($entityManager);
+            $log->log(
+                $this->getUser(),
+                'update',
+                'Updated student ID '.$student->getId()
+            );
+
             $this->addFlash('success', 'L\'étudiant a été modifié avec succès.');
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
