@@ -80,6 +80,8 @@ class Student
     private Collection $messages;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['student:read'])]
+    #[ApiFilter(SearchFilter::class, strategy: 'partial')]
     private ?string $email = null;
 
     public function __construct()
@@ -109,6 +111,7 @@ class Student
         return $this->lastName;
     }
 
+    #[Groups(['student:read'])]
     public function getFullName(): ?string
     {
         return $this->firstName." ".$this->lastName;
@@ -257,5 +260,18 @@ class Student
         $this->email = $email;
 
         return $this;
+    }
+
+    #[Groups(['student:read'])]
+    public function getAge(): ?int
+    {
+        if ($this->birthDay === null) {
+            return null;
+        }
+
+        $today = new \DateTime();
+        $interval = $today->diff($this->birthDay);
+
+        return $interval->y;
     }
 }
