@@ -1,4 +1,4 @@
-# Installation du Projet EMISA ANNUAIRE
+# Installation du Projet ETUDIANT EMISA ANNUAIRE
 
 Ce guide décrit les étapes nécessaires pour installer et lancer ce projet Symfony en local.
 
