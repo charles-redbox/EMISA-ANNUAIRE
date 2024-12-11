@@ -41,9 +41,9 @@ final class MessageController extends AbstractController
             $entityManager->flush();
 
             $email = (new Email())
-            ->from('no-reply@emisa.fr')
+            ->from($message->getExpeditor())
             ->to($student->getEmail())
-            ->subject('Nouveau message de '.$message->getExpeditor())
+            ->subject($message->getObject())
             ->html(
                 $this->renderView('emails/new_message.html.twig', [
                     'student' => $student,
